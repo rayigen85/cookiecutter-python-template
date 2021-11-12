@@ -1,0 +1,15 @@
+# This file should not exist! :/
+# Requirement files are deliberatly *not* about managing *package dependencies* but
+# describe specific runtime environment for particular tasks.
+# *But* because we currently have no way to *publish* released python packages to a
+# central (private) warehouse, we need some other way to store information on how/where
+# to retrieve *package dependencies* that are itself NWA components (and hence not
+# available via pyyi/nexus. This file is how we do this.
+#
+# For each NWA component your package depends on place the corresponding git repository
+# here. An example below should give you the general idea.
+# Please note that you *may* need to specify a git reference in order to control which
+# version is beeing pulled. Hopefully we can remove this workaraound as soon as
+# possible.
+
+# git+ssh://icoifprd@d100stulxrat001.d100.intern/home/icoifprd/gitrepos/<REPONAME>[@<GIT REFERENCE>]

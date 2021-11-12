@@ -1,0 +1,15 @@
+default_stages:
+  - commit
+  - push
+repos:
+  - repo: ssh://icoifprd@localhost/home/icoifprd/gitrepos/nwa-git-hooks.git
+    rev: 0.1.0
+    hooks:
+      - id: run-make-test-tox
+        stages: [push, merge-commit]
+      - id: run-make-test-quick
+        stages: [commit]
+      - id: validate-commit-message
+        stages: [commit-msg]
+      - id: auto-pre-fill-commit-message
+        stages: [prepare-commit-msg]

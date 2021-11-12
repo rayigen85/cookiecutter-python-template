@@ -1,0 +1,22 @@
+# This file declaritivly describes all the external python packages required to
+# build a runtime environment that is able to run the entire test suite.
+# This is not about managing the package dependencies!
+
+black==21.9b0
+check-manifest==0.46
+coverage==5.5
+doc8==0.9.0
+factory-boy==3.2.0
+fauxfactory==3.1.0
+flake8==3.9.2
+flake8-debugger==4.0.0
+flake8-print==4.0.0
+isort==5.9.3
+mock==4.0.3
+mypy==0.910
+pep8-naming==0.12.1
+pytest==6.2.5
+pytest-cov==2.12.1
+pytest-factoryboy==2.1.0
+pytest-mock==3.6.1
+tox==3.24.4

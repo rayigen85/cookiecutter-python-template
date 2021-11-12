@@ -1,0 +1,12 @@
+# This file declaritivly describes all the external python packages required to
+# build a canonical development environment.
+# This is not about managing the package dependencies!
+
+-r docs.pip
+-r test.pip
+
+bump2version==1.0.1
+ipython==7.16.1
+pip-licenses==3.5.2
+wheel==0.37.0
+pre-commit==2.15.0
