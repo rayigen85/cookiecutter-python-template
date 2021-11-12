@@ -8,3 +8,4 @@ exclude Makefile
 recursive-exclude tests *.py
 recursive-exclude requirements *.pip
 exclude .pre-commit-config.yaml
+recursive-exclude data *
