@@ -10,7 +10,7 @@ Contents:
    packaging
    history
 
-   modules
+   apidocs/modules
 
 Indices and tables
 ==================

@@ -132,7 +132,7 @@ dist: clean test-all deploy-html-global
 	ls -lh dist
 
 docs:
-	sphinx-apidoc -f -o docs/ $(SOURCE_CODE_PATH)/
+	sphinx-apidoc -f -o docs/apidocs/ $(SOURCE_CODE_PATH)/
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html SPHINXOPTS=$(SPHINXOPTS)
 
