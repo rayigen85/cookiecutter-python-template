@@ -160,7 +160,7 @@ test-docs: docs
 test:
 	py.test  tests/
 
-test-all: test-style coverage-report test-types test-manifest test-docs
+test-all: test-style coverage-report test-types test-manifest test-docs test-mypy
 
 test-quick: test test-style test-types
 
