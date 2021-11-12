@@ -7,3 +7,4 @@ exclude docs/_static/.gitkeep
 exclude Makefile
 recursive-exclude tests *.py
 recursive-exclude requirements *.pip
+exclude .pre-commit-config.yaml
