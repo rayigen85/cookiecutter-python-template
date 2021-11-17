@@ -5,5 +5,6 @@
   "version": "0.1.0",
   "author_name": "Finanzinformatik GmbH",
   "author_email": "foobar@example.com",
-  "description_short": "description"
+  "description_short": "description",
+  "jenkins_token": "1nF8Jcbh7cAw0imWezoqdGfmQpndqz9k"
 }

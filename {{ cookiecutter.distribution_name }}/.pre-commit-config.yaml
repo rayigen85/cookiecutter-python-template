@@ -13,3 +13,6 @@ repos:
         stages: [commit-msg]
       - id: auto-pre-fill-commit-message
         stages: [prepare-commit-msg]
+      - id: trigger-jenkins-build
+        stages: [push, merge-commit]
+        args: ["--component_name={{ cookiecutter.distribution_name }}", "--jenkins_token={{ cookiecutter.jenkins_token }}"]
