@@ -6,5 +6,5 @@
   "author_name": "Finanzinformatik GmbH",
   "author_email": "foobar@example.com",
   "description_short": "description",
-  "jenkins_token": "1nF8Jcbh7cAw0imWezoqdGfmQpndqz9k"
+  "jenkins_token": "<PUT_YOUR_REAL_TOKEN_HERE>"
 }
