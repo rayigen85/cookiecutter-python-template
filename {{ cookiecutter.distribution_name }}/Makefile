@@ -2,23 +2,9 @@ SPHINX_BUILDDIR ?= _build
 SPHINXOPTS ?= "-W"
 COMPONENT_NAME = {{ cookiecutter.distribution_name }}
 SOURCE_CODE_PATH = src/{{ cookiecutter.package_name }}
-HTML_INDEX_FILE_PATH = data/index.html
-HTML_DEPLOYMENT_BASE_DIR ?= /var/www/html/nwa
-HTML_DEPLOYMENT_GLOBAL_BASE_DIR = $(HTML_DEPLOYMENT_BASE_DIR)/global
-HTML_DEPLOYMENT_USER_BASE_DIR = $(HTML_DEPLOYMENT_BASE_DIR)/$(USER)
-HTML_DEPLOYMENT_GLOBAL_COMPONENT_DIR = $(HTML_DEPLOYMENT_GLOBAL_BASE_DIR)/$(COMPONENT_NAME)
-HTML_DEPLOYMENT_USER_COMPONENT_DIR = $(HTML_DEPLOYMENT_USER_BASE_DIR)/$(COMPONENT_NAME)
-DOCS_HTML_DEPLOYMENT_LOCATION_GLOBAL = $(HTML_DEPLOYMENT_GLOBAL_COMPONENT_DIR)/docs
-DOCS_HTML_DEPLOYMENT_LOCATION_USER = $(HTML_DEPLOYMENT_USER_COMPONENT_DIR)/docs
-COVERAGE_BUILDDIR = htmlcov
-COVERAGE_HTML_DEPLOYMENT_LOCATION_GLOBAL = $(HTML_DEPLOYMENT_GLOBAL_COMPONENT_DIR)/coverage
-COVERAGE_HTML_DEPLOYMENT_LOCATION_USER = $(HTML_DEPLOYMENT_USER_COMPONENT_DIR)/coverage
-
-PRE_COMMIT_HOOK_TYPES = pre-commit pre-merge-commit pre-push prepare-commit-msg commit-msg post-checkout post-commit post-merge post-rewrite
-PRE_COMMIT_HOOK_TYPES_ARGUMENT_LIST = $(foreach type,$(PRE_COMMIT_HOOK_TYPES),--hook-type $(type))
 
 .PHONY: black clean clean-backups clean-build clean-docs clean-pyc clean-test coverage\
-  coverage-report develop deploy-coverage deploy-docs dist docs isort test-flake8 test\
+  coverage-report develop dist docs isort test-flake8 test\
   test-all test-docs test-quick test-style test-types
 
 help:
@@ -33,13 +19,6 @@ help:
 	@echo "   coverage                to generate a coverage report file."
 	@echo "   coverage-report         to check code coverage quickly with the default Python."
 	@echo "   develop                 to install (or update) all packages required for development."
-	@echo "   deploy-coverage         to generate a html coverage report and deploy it to the user specific webroot."
-	@echo "   deploy-coverage-global  to generate a html coverage report and deploy it to the global  webroot."
-	@echo "   deploy-docs             to generate documentation and deploy it to the user specific webroot."
-	@echo "   deploy-docs-global      to generate documentation and deploy it to the global webroot."
-	@echo "   deploy-html             to deploy all html artefacts to user specific webroot."
-	@echo "   deploy-html-global      to deploy all html artefacts to global webroot."
-	@echo "   install-git-hooks       to install a set of provided git hooks to the repository."
 	@echo "   dist                    to built the package and upload new global html docs."
 	@echo "   docs                    to generate Sphinx HTML documentation, including API docs."
 	@echo "   isort                   to run isort on the whole project."
@@ -93,40 +72,8 @@ develop:
 	pip install -U -r requirements/private-repos.pip
 	pip install -U -r requirements/dev.pip
 	pip install -U -e .
-	pre-commit install $(PRE_COMMIT_HOOK_TYPES_ARGUMENT_LIST)
 
-deploy-coverage: coverage
-	coverage html
-	mkdir -p $(COVERAGE_HTML_DEPLOYMENT_LOCATION_USER)
-	rm -rf $(COVERAGE_HTML_DEPLOYMENT_LOCATION_USER)/*
-	cp -r $(COVERAGE_BUILDDIR)/* $(COVERAGE_HTML_DEPLOYMENT_LOCATION_USER)
-
-deploy-coverage-global: coverage
-	coverage html
-	mkdir -p $(COVERAGE_HTML_DEPLOYMENT_LOCATION_GLOBAL)
-	rm -rf $(COVERAGE_HTML_DEPLOYMENT_LOCATION_GLOBAL)/*
-	cp -r $(COVERAGE_BUILDDIR)/* $(COVERAGE_HTML_DEPLOYMENT_LOCATION_GLOBAL)
-
-deploy-docs: docs
-	mkdir -p $(DOCS_HTML_DEPLOYMENT_LOCATION_USER)
-	rm -rf $(DOCS_HTML_DEPLOYMENT_LOCATION_USER)/*
-	cp -r docs/$(SPHINX_BUILDDIR)/html/* $(DOCS_HTML_DEPLOYMENT_LOCATION_USER)
-
-deploy-docs-global: docs
-	mkdir -p $(DOCS_HTML_DEPLOYMENT_LOCATION_GLOBAL)
-	rm -rf $(DOCS_HTML_DEPLOYMENT_LOCATION_GLOBAL)/*
-	cp -r docs/$(SPHINX_BUILDDIR)/html/* $(DOCS_HTML_DEPLOYMENT_LOCATION_GLOBAL)
-
-deploy-html: deploy-docs deploy-coverage
-	cp $(HTML_INDEX_FILE_PATH) $(HTML_DEPLOYMENT_USER_COMPONENT_DIR)
-
-deploy-html-global: deploy-docs-global deploy-coverage-global
-	cp $(HTML_INDEX_FILE_PATH) $(HTML_DEPLOYMENT_GLOBAL_COMPONENT_DIR)
-
-install-git-hooks:
-	pre-commit install $(PRE_COMMIT_HOOK_TYPES_ARGUMENT_LIST)
-
-dist: clean test-all deploy-html-global
+dist: clean test-all
 	python3 -m build
 	@echo
 	ls -lh dist
