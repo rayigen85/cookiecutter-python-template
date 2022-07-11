@@ -3,8 +3,7 @@
   "package_name": "{{ cookiecutter.distribution_name.lower().replace('-', '_') }}",
   "package_source": "src/{{ cookiecutter.package_name }}",
   "version": "0.1.0",
-  "author_name": "Finanzinformatik GmbH",
+  "author_name": "Juky Muster",
   "author_email": "foobar@example.com",
-  "description_short": "description",
-  "jenkins_token": "<PUT_YOUR_REAL_TOKEN_HERE>"
+  "description_short": "description"
 }
