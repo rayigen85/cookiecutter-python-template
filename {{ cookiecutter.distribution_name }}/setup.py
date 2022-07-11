@@ -6,7 +6,7 @@ setup(
     author='{{ cookiecutter.author_name }}',
     author_email='{{ cookiecutter.author_email }}',
     description='{{ cookiecutter.description_short }}',
-    url='https://f-i.de',
+    url='{{ cookiecutter.url }}',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     entry_points='''
