@@ -25,11 +25,11 @@ addopts = "--tb=short --strict-markers"
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-envlist = py36,flake8,isort,manifest,docs,mypy,black
+envlist = py3,flake8,isort,manifest,docs,mypy,black
 minversion = 2.1.0
 
 [testenv]
-basepython = python3.6
+basepython = python3
 install_command = pip install {opts} {packages}
 deps =
   -rrequirements/private-repos.pip
