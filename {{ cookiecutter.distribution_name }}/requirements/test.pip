@@ -2,7 +2,7 @@
 # build a runtime environment that is able to run the entire test suite.
 # This is not about managing the package dependencies!
 
-black==21.9b0
+black==22.6.0
 check-manifest==0.46
 coverage==5.5
 doc8==0.9.0
