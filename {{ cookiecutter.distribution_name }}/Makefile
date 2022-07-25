@@ -69,7 +69,6 @@ coverage-report: coverage
 
 develop:
 	pip install -U pip
-	pip install -U -r requirements/private-repos.pip
 	pip install -U -r requirements/dev.pip
 	pip install -U -e .
 
@@ -107,9 +106,9 @@ test-docs: docs
 test:
 	py.test  tests/
 
-test-all: test-style coverage-report test-types test-manifest test-docs test-mypy
+test-all: test-style coverage-report test-manifest test-docs test-mypy
 
-test-quick: test test-style test-types
+test-quick: test test-style
 
 test-style: test-black test-flake8 test-isort
 
