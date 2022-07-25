@@ -32,7 +32,6 @@ minversion = 2.1.0
 basepython = python3
 install_command = pip install {opts} {packages}
 deps =
-  -rrequirements/private-repos.pip
   -rrequirements/test.pip
 isolated_build=true
 commands =
@@ -67,7 +66,6 @@ allowlist_externals = make
 
 [testenv:docs]
 deps =
-  -rrequirements/private-repos.pip
   -rrequirements/test.pip
   -rrequirements/docs.pip
 commands =
